@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import NavBar from "../../components/NavBar";
 import './style.css';
 
 function Login() {
@@ -11,10 +12,14 @@ function Login() {
     } 
     
     return (
-        <div className="teste">
-            <h1>Teste tela login</h1>
-            <button className="button-submit" onClick={handleLogin} type="submit"> Entrar </button>
+        <div>
+        <NavBar/>
+            <div className="teste">
+                <h1>Teste tela login</h1>
+                <button className="button-submit" onClick={handleLogin} type="submit"> Entrar </button>
+            </div>
         </div>
+
     )
 }
 export default Login;

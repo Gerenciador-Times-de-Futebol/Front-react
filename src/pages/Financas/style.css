@@ -1,0 +1,8 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    grid-template-rows: auto 1fr;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}

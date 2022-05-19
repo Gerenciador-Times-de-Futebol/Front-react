@@ -1,0 +1,18 @@
+img{
+    display: flex;
+    
+    margin: 0 0 0 0 ;
+}
+.lateral-bar{
+    width: 15%;
+    height: 0px;
+    float: left;
+    background-color: #F6F3F3;
+}
+.lateral-bar-content{
+    padding-top: 20px;
+    padding-left: 10px;
+}
+.link{
+    margin: 10px;
+}
