@@ -9,27 +9,30 @@ import "./style.css"
 function Financas () {
 
     const navigate = useNavigate();
-    
-    function handleLogin(e){
-        navigate('/financas');  // Tela despesas
+
+    function handleLucros(e){
+        navigate('/lucros');  // Tela despesas
+    } 
+
+    function handleDespesas(e){
+        navigate('/despesas');  // Tela despesas
     } 
 
     return (    
-    <div> 
+    <div className="fullscreen"> 
       <NavBar />
-        <div className='App'>
-        <br />
-                <h1>Financas <button className="button-submit" onClick={handleLogin} type="submit"> Lucros </button></h1>
-                <SplitPane split="vertical" minSize="50%" defaultSize="50%"  style={{ position: "static" }}>
-                    <div>
-                      split 1
-                        <LeftChart />
-                    </div>
-                    <div>
-                        split 2
-                        <RightChart />
-                    </div>
-               </SplitPane>
+            <div>
+                <div className="titulo">
+                     <h1>Finanças <button className="btnLucros" onClick={handleLucros} type="submit"> Lucros </button>
+                     <button className="btnDespesas" onClick={handleDespesas} type="submit"> Despesas </button> </h1>
+                </div>   
+                <div className="esquerda">
+              <LeftChart />
+              </div>
+            </div>
+
+        <div className="direita">
+            <RightChart />
         </div>
     </div>
     

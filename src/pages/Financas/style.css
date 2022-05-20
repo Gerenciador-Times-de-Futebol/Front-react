@@ -1,8 +1,44 @@
-.App {
+.titulo{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: white; /* Just to visualize the extent */
+    display: flex;  
+  }
+
+  .esquerda {
+    display: inline-block;
+    padding: 70px 170px 43px 15px;
+    vertical-align: left;
+    text-align: left;
+}
+
+.direita {
     display: flex;
-    flex-direction: column;
-    grid-template-rows: auto 1fr;
-    position: relative;
-    height: 100vh;
-    width: 100vw;
+    padding-right: 100%;
+    padding-top: 100px;
+    text-align: right;
+    float: right;
+}
+
+.btnLucros{
+    background-color: cyan;
+    text-align: center;
+    border-radius: 7px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+.btnDespesas{
+    background-color: red;
+    text-align: center;
+    border-radius: 7px;
 }
