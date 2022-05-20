@@ -39,7 +39,7 @@ const data = [
   },
 ];
 
-function RightChart() {
+function RightChartFinancas() {
     return (
         <ComposedChart
           width={500}
@@ -62,4 +62,4 @@ function RightChart() {
         </ComposedChart>
     );
 }
-export default RightChart;
+export default RightChartFinancas;

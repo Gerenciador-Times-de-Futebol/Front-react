@@ -46,7 +46,7 @@ const data = [
   },
 ];
 
-function LeftChart() {
+function LeftChartFinancas() {
   return (
       <LineChart
         width={500}
@@ -73,5 +73,5 @@ function LeftChart() {
       </LineChart>
     );
   }
-export default LeftChart;
+export default LeftChartFinancas;
 

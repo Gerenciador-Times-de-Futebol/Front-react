@@ -1,10 +1,9 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
-import SplitPane from "react-split-pane";
 import NavBar from "../../components/NavBar";
-import LeftChart from "./LeftChart";
-import RightChart from "./RightChart";
-import "./style.css"
+import LeftChartFinancas from "./LeftChartFinancas";
+import RightChartFinancas from "./RightChartFinancas";
+import "./Financas.css"
 
 function Financas () {
 
@@ -26,13 +25,13 @@ function Financas () {
                      <h1>Finanças <button className="btnLucros" onClick={handleLucros} type="submit"> Lucros </button>
                      <button className="btnDespesas" onClick={handleDespesas} type="submit"> Despesas </button> </h1>
                 </div>   
-                <div className="esquerda">
-              <LeftChart />
+                <div className="esquerdaFinancas">
+              <LeftChartFinancas />
               </div>
             </div>
 
-        <div className="direita">
-            <RightChart />
+        <div className="direitaFinancas">
+            <RightChartFinancas />
         </div>
     </div>
     

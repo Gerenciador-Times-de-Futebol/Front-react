@@ -10,23 +10,24 @@
     bottom: 0;
     right: 0;
     overflow: auto;
-    background: white; /* Just to visualize the extent */
+    background: white; /* Just to visualize the extent => cor do fundo tela completa */
     display: flex;  
   }
 
-  .esquerda {
-    display: inline-block;
-    padding: 70px 170px 43px 15px;
+.esquerdaFinancas {
+    display: flex;
+    margin-top: 120px;
+    margin-left: 20px;
     vertical-align: left;
     text-align: left;
 }
 
-.direita {
+.direitaFinancas {
     display: flex;
-    padding-right: 100%;
-    padding-top: 100px;
     text-align: right;
     float: right;
+    margin-top: 120px;
+    margin-left: 80px;
 }
 
 .btnLucros{

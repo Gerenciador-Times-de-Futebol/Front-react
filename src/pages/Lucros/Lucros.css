@@ -1,0 +1,31 @@
+.titulo{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    background: white; /* Just to visualize the extent => cor do fundo tela completa */
+    display: flex;  
+  }
+
+.esquerdaLucros {
+    display: flex;
+    margin-top: 50px;
+    margin-left: 28px;
+    vertical-align: left;
+    text-align: left;
+}
+
+.direitaLucros {
+    display: flex;
+    padding-top: 190px;
+    padding-left: 120px;
+    text-align: right;
+    float: right;
+}
