@@ -1,6 +1,6 @@
 import NavBar from "../../components/NavBar";
-import TableJogadores from "./TableJogadores";
-import "./Jogadores.css";
+import TableCompromissos from "./TableCompromissos";
+import "./Compromissos.css";
 
 function Jogadores() {
 
@@ -9,10 +9,10 @@ function Jogadores() {
             <NavBar/>
             <div className="container-fluid">
                 <div>
-                    <h1 className="espacamento float-start">Jogadores</h1>
+                    <h1 className="espacamento float-start">Compromissos</h1>
                 </div>
                 <div className="section">
-                    <TableJogadores/>
+                    <TableCompromissos/>
                 </div>
                 <footer className="position">
                     <h5>
@@ -26,7 +26,7 @@ function Jogadores() {
                             style={{ color:'black', textDecoration: 'none' }} 
                             href="/registro" className="float-start">
                                 <i class="bi bi-plus-circle-fill"></i>
-                                &nbsp;Cadastar Novo Jogador&nbsp;&nbsp;
+                                &nbsp;Agendar Novo Compromisso&nbsp;&nbsp;
                         </a>
                     </h5>
                 </footer>
