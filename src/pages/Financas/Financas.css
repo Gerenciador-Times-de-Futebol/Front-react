@@ -1,6 +1,15 @@
 .titulo{
-    padding-top: 10px;
-    padding-left: 10px;
+    padding: 16px;
+    margin: 10px;
+}
+
+.fundo {
+    color: white;
+    background: #599fd9;
+    background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
+    background: linear-gradient(to right, #599fd9, #c2e59c);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .fullscreen {
@@ -10,7 +19,10 @@
     bottom: 0;
     right: 0;
     overflow: auto;
-    background: white; /* Just to visualize the extent => cor do fundo tela completa */
+    color: white;
+    background: #599fd9;
+    background-color: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
+    background-color: linear-gradient(to right, #599fd9, #c2e59c);
     display: flex;  
   }
 
@@ -25,9 +37,8 @@
 .direitaFinancas {
     display: flex;
     text-align: right;
-    float: right;
-    margin-top: 120px;
-    margin-left: 80px;
+    float: right;  
+    margin-top: -350px;
 }
 
 .btnLucros{

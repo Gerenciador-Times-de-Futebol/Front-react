@@ -10,8 +10,16 @@
     bottom: 0;
     right: 0;
     overflow: auto;
-    background: white; /* Just to visualize the extent => cor do fundo tela completa */
-    display: flex;  
+    display: flex;
+}
+
+.fundo {
+    color: white;
+    background: #599fd9;
+    background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
+    background: linear-gradient(to right, #599fd9, #c2e59c);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 .esquerdaDespesas {
@@ -24,9 +32,8 @@
 
 .direitaDespesas {
     display: flex;
-    padding-left: 150px;
-    padding-top: 100px;
     text-align: right;
-    float: right;
+    float: right;  
+    margin-top: -350px;
 }
 

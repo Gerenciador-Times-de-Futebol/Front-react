@@ -6,28 +6,24 @@ import RightChartLucros from "./RightChartLucros";
 import "./Lucros.css"
 
 function Lucros () {
-
-    //const navigate = useNavigate();
-    /*
-    function handleLucros(e){
-        navigate('/lucros');  // Tela despesas
-    } 
-    */
     return (    
-    <div className="fullscreen"> 
+    <div className="fullscreen fundo"> 
       <NavBar />
-            <div>
-                <div className="titulo">
-                     <h1>Lucros </h1>
+            <div className="container-fluid">
+                <div>
+                     <h1 className="titulo">Lucros </h1>
                 </div>   
-                <div className="esquerdaLucros">
-              <LeftChartLucros />
-              </div>
-            </div>
+                <hr />
 
-        <div className="direitaLucros">
-            <RightChartLucros />
-        </div>
+                <div className="esquerdaLucros">
+                    <LeftChartLucros />
+                </div>
+            
+
+                <div className="direitaLucros">
+                    <RightChartLucros />
+                </div>
+            </div>
     </div>
     )
 }

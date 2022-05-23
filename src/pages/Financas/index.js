@@ -18,23 +18,22 @@ function Financas () {
     } 
 
     return (    
-    <div className="fullscreen"> 
+    <div className="fullscreen fundo"> 
       <NavBar />
-            <div>
-                <div className="titulo">
-                     <h1>Finanças <button className="btnLucros" onClick={handleLucros} type="submit"> Lucros </button>
-                     <button className="btnDespesas" onClick={handleDespesas} type="submit"> Despesas </button> </h1>
-                </div>   
+            <div className="container-fluid">
+                <div>
+                     <h1 className="titulo">Finanças <button className="btnLucros" onClick={handleLucros} type="submit"> Lucros </button>
+                     <button className="btnDespesas" onClick={handleDespesas} type="submit"> Despesas </button> </h1>  
+                </div>
+                <hr/>
                 <div className="esquerdaFinancas">
-              <LeftChartFinancas />
-              </div>
-            </div>
-
-        <div className="direitaFinancas">
-            <RightChartFinancas />
-        </div>
+                    <LeftChartFinancas />
+                </div>
+                <div className="direitaFinancas">
+                    <RightChartFinancas />
+                </div>
+            </div> 
     </div>
-    
     )
 }
 export default Financas;

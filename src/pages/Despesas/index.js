@@ -6,20 +6,21 @@ import "./Despesas.css"
 
 function Despesas () {
     return (    
-    <div className="fullscreen"> 
+    <div className="fullscreen fundo"> 
       <NavBar />
-            <div>
-                <div className="titulo">
-                     <h1>Despesas </h1>
-                </div>   
+            <div className="container-fluid">
+               <div> 
+                    <h1 className="titulo">Despesas </h1>
+                </div> 
+                <hr/>
                 <div className="esquerdaDespesas">
-              <LeftChartDespesas />
-              </div>
-            </div>
+                    <LeftChartDespesas />
+                </div>
 
-        <div className="direitaDespesas">
-            <RightChartDespesas />
-        </div>
+                 <div className="direitaDespesas">
+                    <RightChartDespesas />
+                </div>
+            </div>
     </div>
     )
 }
