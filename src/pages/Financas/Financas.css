@@ -20,9 +20,6 @@
     right: 0;
     overflow: auto;
     color: white;
-    background: #599fd9;
-    background-color: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
-    background-color: linear-gradient(to right, #599fd9, #c2e59c);
     display: flex;  
   }
 
