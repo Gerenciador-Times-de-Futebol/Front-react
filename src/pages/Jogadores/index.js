@@ -30,7 +30,7 @@ function Jogadores() {
                                 &nbsp;Cadastar Novo Jogador&nbsp;&nbsp;
                         </a>
                     </h5>
-                    <Button className="float-end" variant="outline-primary">
+                    <Button className="float-end">
                         Jogadores Titulares
                     </Button>
                 </footer>
