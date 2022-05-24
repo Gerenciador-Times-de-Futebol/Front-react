@@ -27,7 +27,7 @@ function NavBar(){
         
                 <CDBSidebarContent className="sidebar-content">
                   <CDBSidebarMenu>
-                    <Link exact to="/" activeClassName="activeClicked">
+                    <Link exact to="/home" activeClassName="activeClicked">
                       <CDBSidebarMenuItem icon="home">Inicio</CDBSidebarMenuItem>
                     </Link>
                     <Link exact to="/jogadores" activeClassName="activeClicked">

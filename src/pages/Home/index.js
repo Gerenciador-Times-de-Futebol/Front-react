@@ -11,7 +11,7 @@ function Home() {
     const navigate = useNavigate();
 
     function handleLogout(e){
-        navigate('/login');
+        navigate('/');
     }
     
     return (
