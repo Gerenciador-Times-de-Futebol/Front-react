@@ -24,7 +24,7 @@ function Jogadores() {
                         </a>
                         <a 
                             style={{ color:'black', textDecoration: 'none' }} 
-                            href="/registro" className="float-start">
+                            href="/registro-compromisso" className="float-start">
                                 <i class="bi bi-plus-circle-fill"></i>
                                 &nbsp;Agendar Novo Compromisso&nbsp;&nbsp;
                         </a>

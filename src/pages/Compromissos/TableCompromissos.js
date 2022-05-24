@@ -25,7 +25,7 @@ function TableCompromissos() {
     }
 
     function handleRegistrarCompromissos(e){
-        navigate('/registro');
+        navigate('/registro-compromisso');
     }
 
     async function deleteCompromisso(id) {

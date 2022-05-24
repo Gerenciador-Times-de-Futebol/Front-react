@@ -7,80 +7,80 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import supabase from '../services/api'
 
-const RegistrarAtletas: React.FC = () => {
+const RegistrarFinanca: React.FC = () => {
   const [name, setName] = useState('')
-  const [position, setPosition] = useState('')
-  const [contract, setContract] = useState('')
-  const [income, setIncome] = useState('')
-  const [birthday, setBirthday] = useState('')
-  const [email, setEmail] = useState('')
+  const [type, setType] = useState('')
+  const [value, setValue] = useState('')
+  const [date, setDate] = useState('')
 
   const navigate = useNavigate()
 
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data, error } = await supabase.from('Jogadores').insert([
+    const { data, error } = await supabase.from('Financas').insert([
       {
         nome: name,
-        posicao: position,
-        termino_contrato: contract,
-        salario: income,
+        valor: value,
+        tipo: type,
       },
     ])
 
     if (error) throw error
-    else console.log('jogador adicionado: ' + data.toString())
+    else console.log('finança adicionada: ' + data.toString())
+
     navigate('/')
   }
-
-  // useEffect(() => {
-  //   console.log(birthday)
-  //   const a = new Date(birthday)
-  //   if (!isNaN(a.getTime())) {
-  //     console.log(a.toISOString())
-  //   }
-  // }, [birthday])
 
   return (
     <Container>
       <Header>
-        <h1>Cadastrar novos jogadores</h1>
+        <h1>Cadastrar novas finanças</h1>
       </Header>
       <LoginBox onSubmit={handleSubmit}>
         <Player src={player} />
+
         <InputBox
           input="Nome"
           value={name}
           onChange={e => setName(e.target.value)}
         />
+        <Label htmlFor="type">Tipo:</Label>
+        <Radio>
+          <div>
+            <input
+              type="radio"
+              value="Lucro"
+              name="type"
+              onChange={e => setType(e.target.value)}
+              checked
+            />
+            Lucro
+          </div>
+          <div>
+            <input
+              type="radio"
+              value="Gasto"
+              name="type"
+              onChange={e => setType(e.target.value)}
+            />
+            Gasto
+          </div>
+        </Radio>
+
         <InputBox
-          input="Posição"
-          value={position}
-          onChange={e => setPosition(e.target.value)}
+          input="Valor"
+          value={value}
+          onChange={e => setValue(e.target.value)}
         />
+
         <InputBox
-          input="Término do contrato"
+          input="Data"
           type="date"
-          value={contract}
-          onChange={e => setContract(e.target.value)}
+          value={date}
+          onChange={e => setDate(e.target.value)}
         />
-        <InputBox
-          input="Salário"
-          value={income}
-          onChange={e => setIncome(e.target.value)}
-        />
-        <InputBox
-          input="Nascimento"
-          type="date"
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
-        />
-        <InputBox
-          input="E-mail"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
+
         <Submit>CADASTRAR</Submit>
       </LoginBox>
       <Footer>
@@ -92,7 +92,7 @@ const RegistrarAtletas: React.FC = () => {
   )
 }
 
-export default RegistrarAtletas
+export default RegistrarFinanca
 
 const Container = styled.div`
   background-image: url(${background});
@@ -143,4 +143,14 @@ const Return = styled.button`
   cursor: pointer;
   background: transparent;
   border: none;
+`
+
+const Radio = styled.div`
+  display: flex;
+  gap: 8rem;
+`
+
+const Label = styled.label`
+  padding-right: 22.5rem;
+  margin-top: 0.5rem;
 `

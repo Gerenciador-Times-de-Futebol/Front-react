@@ -11,6 +11,9 @@ import Compromissos from '../pages/Compromissos'
 import Treinos from '../pages/Treinos'
 import RegistrarAtletas from '../pages/RegistrarAtletas'
 import Cadastro from '../pages/Cadastro'
+import RegistrarFuncionario from '../pages/RegistrarFuncionario'
+import RegistrarFinanca from '../pages/RegistrarFinanca'
+import RegistrarCompromisso from '../pages/RegistrarCompromisso'
 
 function Rotas() {
   return (
@@ -25,7 +28,16 @@ function Rotas() {
         <Route element={<Despesas />} path="/despesas" />
         <Route element={<Compromissos />} path="/compromissos" />
         <Route element={<Treinos />} path="/treinos" />
-        <Route element={<RegistrarAtletas />} path="/registro" />
+        <Route element={<RegistrarAtletas />} path="/registro-atleta" />
+        <Route
+          element={<RegistrarFuncionario />}
+          path="/registro-funcionario"
+        />
+        <Route element={<RegistrarFinanca />} path="/registro-financa" />
+        <Route
+          element={<RegistrarCompromisso />}
+          path="/registro-compromisso"
+        />
         <Route element={<Cadastro />} path="/cadastro" />
       </Routes>
     </BrowserRouter>

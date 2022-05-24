@@ -7,45 +7,36 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import supabase from '../services/api'
 
-const RegistrarAtletas: React.FC = () => {
+const RegistrarFuncionario: React.FC = () => {
   const [name, setName] = useState('')
-  const [position, setPosition] = useState('')
-  const [contract, setContract] = useState('')
+  const [post, setPost] = useState('')
+  const [gender, setGender] = useState('')
   const [income, setIncome] = useState('')
   const [birthday, setBirthday] = useState('')
-  const [email, setEmail] = useState('')
 
   const navigate = useNavigate()
 
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data, error } = await supabase.from('Jogadores').insert([
+    const { data, error } = await supabase.from('Comissao').insert([
       {
         nome: name,
-        posicao: position,
-        termino_contrato: contract,
+        funcao: post,
+        data_nascimento: birthday,
         salario: income,
       },
     ])
 
     if (error) throw error
-    else console.log('jogador adicionado: ' + data.toString())
+    else console.log('funcionario adicionado: ' + data.toString())
     navigate('/')
   }
-
-  // useEffect(() => {
-  //   console.log(birthday)
-  //   const a = new Date(birthday)
-  //   if (!isNaN(a.getTime())) {
-  //     console.log(a.toISOString())
-  //   }
-  // }, [birthday])
 
   return (
     <Container>
       <Header>
-        <h1>Cadastrar novos jogadores</h1>
+        <h1>Cadastrar novos funcionários</h1>
       </Header>
       <LoginBox onSubmit={handleSubmit}>
         <Player src={player} />
@@ -55,15 +46,14 @@ const RegistrarAtletas: React.FC = () => {
           onChange={e => setName(e.target.value)}
         />
         <InputBox
-          input="Posição"
-          value={position}
-          onChange={e => setPosition(e.target.value)}
+          input="Cargo"
+          value={post}
+          onChange={e => setPost(e.target.value)}
         />
         <InputBox
-          input="Término do contrato"
-          type="date"
-          value={contract}
-          onChange={e => setContract(e.target.value)}
+          input="Gênero"
+          value={gender}
+          onChange={e => setGender(e.target.value)}
         />
         <InputBox
           input="Salário"
@@ -76,11 +66,6 @@ const RegistrarAtletas: React.FC = () => {
           value={birthday}
           onChange={e => setBirthday(e.target.value)}
         />
-        <InputBox
-          input="E-mail"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
         <Submit>CADASTRAR</Submit>
       </LoginBox>
       <Footer>
@@ -92,7 +77,7 @@ const RegistrarAtletas: React.FC = () => {
   )
 }
 
-export default RegistrarAtletas
+export default RegistrarFuncionario
 
 const Container = styled.div`
   background-image: url(${background});

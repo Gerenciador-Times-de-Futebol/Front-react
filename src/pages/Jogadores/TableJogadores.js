@@ -25,7 +25,7 @@ function TableJogadores() {
     }
 
     function handleRegistrarJogadores(e){
-        navigate('/registro');
+        navigate('/registro-atleta');
     }
 
     async function deleteJogador(id) {

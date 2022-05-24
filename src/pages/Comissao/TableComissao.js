@@ -25,7 +25,7 @@ function TableComissao() {
     }
 
     function handleRegistrarComissao(e){
-        navigate('/registro');
+        navigate('/registro-funcionario');
     }
 
     async function deleteComissao(id) {
