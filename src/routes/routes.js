@@ -10,6 +10,7 @@ import Despesas from '../pages/Despesas'
 import Compromissos from '../pages/Compromissos'
 import Treinos from '../pages/Treinos'
 import RegistrarAtletas from '../pages/RegistrarAtletas'
+import Cadastro from '../pages/Cadastro'
 
 function Rotas() {
   return (
@@ -25,6 +26,7 @@ function Rotas() {
         <Route element={<Compromissos />} path="/compromissos" />
         <Route element={<Treinos />} path="/treinos" />
         <Route element={<RegistrarAtletas />} path="/registro" />
+        <Route element={<Cadastro />} path="/cadastro" />
       </Routes>
     </BrowserRouter>
   )
