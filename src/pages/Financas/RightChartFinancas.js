@@ -2,40 +2,28 @@ import { ComposedChart,Line,Bar,XAxis, YAxis,CartesianGrid,Tooltip,Legend} from 
 
 const data = [
   {
-    name: 'Page A',
-    uv: 590,
-    pv: 800,
-    amt: 1400,
+    name: 'Salários',
+    Passado: 3000,
+    Recente: 1398,
+    amt: 2210,
   },
   {
-    name: 'Page B',
-    uv: 868,
-    pv: 967,
-    amt: 1506,
+    name: 'Vendas',
+    Passado: 2780,
+    Recente: 3908,
+    amt: 2000,
   },
   {
-    name: 'Page C',
-    uv: 1397,
-    pv: 1098,
-    amt: 989,
+    name: 'Patrocínios',
+    Passado: 1890,
+    Recente: 4800,
+    amt: 2181,
   },
   {
-    name: 'Page D',
-    uv: 1480,
-    pv: 1200,
-    amt: 1228,
-  },
-  {
-    name: 'Page E',
-    uv: 1520,
-    pv: 1108,
-    amt: 1100,
-  },
-  {
-    name: 'Page F',
-    uv: 1400,
-    pv: 680,
-    amt: 1700,
+    name: 'Bilheteria',
+    Passado: 2390,
+    Recente: 3800,
+    amt: 2500,
   },
 ];
 
@@ -57,8 +45,8 @@ function RightChartFinancas() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="uv" barSize={20} fill="#413ea0" />
-          <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+          <Bar dataKey="Recente" barSize={20} fill="#413ea0" />
+          <Line type="monotone" dataKey="Passado" stroke="#ff7300" />
         </ComposedChart>
     );
 }
