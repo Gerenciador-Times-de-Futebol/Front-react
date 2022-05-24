@@ -5,43 +5,45 @@ import './style.css';
 import logo from "../../assets/logo.png";
 import supabase from "../../services/api";
 
-function Login() {
+const Cadastro = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
+
     const navigate = useNavigate();
-    
-    async function handleLogin(e){
+
+    async function handleCadastro(e) {
         e.preventDefault();
-        try {  
-            let { user, error } = await supabase.auth.signIn({
+        try {
+            let { user, error } = await supabase.auth.signUp({
                 email: email,
                 password: password
             })
-  
-          if (error !== 406) {
-            throw error
-          }
-  
-          if (user) {
-            navigate('/');
-          }
-          else {
-            alert("Login ou senha inválidos")
-          }
+
+            if (error !== 406) {
+                throw error
+            }
+
+            if (user) {
+                navigate('/');
+            }
+            else {
+                console.log(error)
+                alert("Cadastro inválido")
+            }
         } catch (error) {
-            alert("Login ou senha inválidos")
-        } 
-    } 
-    
+            console.log(error)
+            alert("Cadastro inválido")
+        }
+    }
+
+
     return (
         <Container  >
             <div className="teste" >
                 <img src={logo} className="imagem" alt="Logo" />
                 <h1 className="texto" >Mutiny</h1>
                 <div className="teste2" >
-                    <form onSubmit={handleLogin} >
-                        
+                    <form onSubmit={handleCadastro} >
                         <div className="mb-3">
                         <label>Email</label>
                         <input
@@ -62,30 +64,16 @@ function Login() {
                             onChange = {e=>setPassword(e.target.value)}
                         />
                         </div>
-                        <div className="mb-3">
-                        <div className="custom-control custom-checkbox">
-                            <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customCheck1"
-                            />
-                            <label className="custom-control-label" htmlFor="customCheck1">
-                            Lembrar-me
-                            </label>
-                        </div>
-                        </div>
                         <div className="d-grid">
                         <button type="submit" className="btn btn-primary">
-                            Entrar
+                            Cadastrar
                         </button>
                         </div>
-                        <p className="forgot-password text-right">
-                            <a href="#">Esqueceu a senha?</a>
-                        </p>
                     </form>
                 </div>
             </div>
         </Container>
     )
 }
-export default Login;
+
+export default Cadastro
