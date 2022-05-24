@@ -1,18 +1,18 @@
 import NavBar from "../../components/NavBar";
-import TableJogadores from "./TableJogadores";
-import "./Jogadores.css";
+import TableTreinos from "./TableTreinos";
+import "./Treinos.css";
 
-function Jogadores() {
+function Treinos() {
 
     return (
         <div className="fullscreen fundo">
             <NavBar/>
             <div className="container-fluid">
                 <div>
-                    <h1 className="espacamento float-start">Jogadores</h1>
+                    <h1 className="espacamento float-start">Treinos</h1>
                 </div>
                 <div className="section">
-                    <TableJogadores/>
+                    <TableTreinos/>
                 </div>
                 <footer className="position">
                     <h5>
@@ -26,7 +26,7 @@ function Jogadores() {
                             style={{ color:'black', textDecoration: 'none' }} 
                             href="/registro" className="float-start">
                                 <i class="bi bi-plus-circle-fill"></i>
-                                &nbsp;Cadastar Novo Jogador&nbsp;&nbsp;
+                                &nbsp;Agendar Novo Treino&nbsp;&nbsp;
                         </a>
                     </h5>
                 </footer>
@@ -34,4 +34,4 @@ function Jogadores() {
         </div>
     )
 }
-export default Jogadores;
+export default Treinos;

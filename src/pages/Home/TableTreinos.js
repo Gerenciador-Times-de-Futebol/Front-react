@@ -8,7 +8,7 @@ function TableCompromissos() {
             <Table striped bordered hover style={{ backgroundColor:'#dddddd', color:'black' }}>
                 <thead>
                     <tr>
-                        <th>Dia</th>
+                        <th>Data</th>
                         <th>Horário</th>
                         <th>Tipo</th>
                         <th>Local</th>
@@ -16,13 +16,13 @@ function TableCompromissos() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>03/05/2022</td>
+                        <td>03/06/2022</td>
                         <td>16:00</td>
                         <td>Treino Tático</td>
                         <td>Campo B</td>
                     </tr>
                     <tr>
-                        <td>04/05/2022</td>
+                        <td>04/06/2022</td>
                         <td>16:00</td>
                         <td>Jogo-Treino</td>
                         <td>Maracanã</td>
