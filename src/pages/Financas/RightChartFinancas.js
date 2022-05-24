@@ -3,29 +3,30 @@ import { ComposedChart,Line,Bar,XAxis, YAxis,CartesianGrid,Tooltip,Legend} from 
 const data = [
   {
     name: 'Salários',
-    Passado: 3000,
-    Recente: 1398,
+    Passado: 30000,
+    Recente: 13980,
     amt: 2210,
   },
   {
-    name: 'Vendas',
-    Passado: 2780,
-    Recente: 3908,
+    name: 'Vendas Camsisas',
+    Passado: 27800,
+    Recente: 39080,
     amt: 2000,
   },
   {
     name: 'Patrocínios',
-    Passado: 1890,
-    Recente: 4800,
+    Passado: 18900,
+    Recente: 48000,
     amt: 2181,
   },
   {
     name: 'Bilheteria',
-    Passado: 2390,
-    Recente: 3800,
+    Passado: 23900,
+    Recente: 38000,
     amt: 2500,
   },
 ];
+
 
 function RightChartFinancas() {
     return (

@@ -19,8 +19,8 @@ function Rotas() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Login />} path="/login" />
-        <Route element={<Home />} path="/" />
+        <Route element={<Login />} path="/" />
+        <Route element={<Home />} path="/home" />
         <Route element={<Jogadores />} path="/jogadores" />
         <Route element={<Comissao />} path="/comissao" />
         <Route element={<Financas />} path="/financas" />

@@ -11,48 +11,31 @@ import {
 
 const data = [
   {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
+    name: 'Bilheteria',
+    Recentes: 400000,
+    Passado: 300000,
     amt: 2400,
   },
   {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
+    name: 'Sócios',
+    Recentes: 300000,
+    Passado: 200000,
     amt: 2210,
   },
   {
-    name: 'Page C',
-    uv: 2000,
-    pv: 8,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
+    name: 'Títulos',
+    Recentes: 100000,
+    Passado: 300000,
     amt: 2000,
   },
   {
-    name: 'Page E',
-    uv: 18,
-    pv: 4800,
+    name: 'Patrocínios',
+    Recentes: 380000,
+    Passado: 260000,
     amt: 2181,
   },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
 ];
+
 
 const renderCustomizedLabel = (props) => {
   const { x, y, width, value } = props;
@@ -86,10 +69,10 @@ function RightChartLucros() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884d8" minPointSize={5}>
+          <Bar dataKey="Passado" fill="#82ca9d" minPointSize={5}>
             <LabelList dataKey="name" content={renderCustomizedLabel} />
           </Bar>
-          <Bar dataKey="uv" fill="#82ca9d" minPointSize={10} />
+          <Bar dataKey="Recentes" fill="#8884d8" minPointSize={10} />
         </BarChart>
     );
 }
