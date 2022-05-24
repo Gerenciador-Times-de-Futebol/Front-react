@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import supabase from "../../services/api";
-import  "./UserConfig.css"
+import "./ConfigUser.css"
 
 
 function UserChange() { 
@@ -39,13 +39,11 @@ function UserChange() {
   }
     
     return (
-      <div>
-          <footer>
-            <button  type="submit"> Alterar Nome </button>
-            <button className="btnDespesas"  type="submit"> Alterar Email </button>
-            <button className="btnDespesas"  type="submit"> Alterar senha </button>
-          </footer>
+      <div className="espacoBotoes">
+            <button className="btnNome" type="submit"> Alterar Nome </button>
+            <button className="btnEmail" type="submit"> Alterar Email </button>
+            <button className="btnSenha" type="submit"> Alterar senha </button>
       </div>
     )
 }
-export default UserChange;
+export default UserChange;  

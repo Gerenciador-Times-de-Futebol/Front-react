@@ -1,0 +1,52 @@
+.titulo{
+    padding: 16px;
+    margin: 10px;
+}
+
+.fundo {
+    color: white;
+    background: #599fd9;
+    background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
+    background: linear-gradient(to right, #599fd9, #c2e59c);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+    color: white;
+    display: flex;  
+}
+
+.espacoBotoes {
+    padding-top: 400px;
+    padding-left: 220px;
+}
+
+.btnNome {
+    background-color: aquamarine;
+    text-align: center;
+    border-radius: 7px;
+    width: 205px;
+}
+
+.btnEmail {
+    background-color: aquamarine;
+    text-align: center;
+    border-radius: 7px;
+    margin-left: 14px;
+    width: 205px;
+}
+
+.btnSenha {
+    background-color: aquamarine;
+    text-align: center;
+    border-radius: 7px;
+    margin-left: 14px;
+    width: 205px;
+}
