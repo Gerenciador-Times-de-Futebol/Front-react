@@ -14,6 +14,7 @@ import Cadastro from '../pages/Cadastro'
 import RegistrarFuncionario from '../pages/RegistrarFuncionario'
 import RegistrarFinanca from '../pages/RegistrarFinanca'
 import RegistrarCompromisso from '../pages/RegistrarCompromisso'
+import ConfigUser from '../pages/ConfigUser/Index'
 
 function Rotas() {
   return (
@@ -29,16 +30,11 @@ function Rotas() {
         <Route element={<Compromissos />} path="/compromissos" />
         <Route element={<Treinos />} path="/treinos" />
         <Route element={<RegistrarAtletas />} path="/registro-atleta" />
-        <Route
-          element={<RegistrarFuncionario />}
-          path="/registro-funcionario"
-        />
+        <Route element={<RegistrarFuncionario />} path="/registro-funcionario" />
         <Route element={<RegistrarFinanca />} path="/registro-financa" />
-        <Route
-          element={<RegistrarCompromisso />}
-          path="/registro-compromisso"
-        />
+        <Route element={<RegistrarCompromisso />} path="/registro-compromisso"/>
         <Route element={<Cadastro />} path="/cadastro" />
+        <Route element={<ConfigUser />} path="/config" /> 
       </Routes>
     </BrowserRouter>
   )
