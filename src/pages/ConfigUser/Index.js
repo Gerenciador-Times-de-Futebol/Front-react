@@ -1,6 +1,7 @@
 import UserChange from "./UserChange";
 import NavBar from "../../components/NavBar";
 import "./ConfigUser.css"
+import ImageUser from "../../assets/user.png";
 
 function ConfigUser() { 
     return (
@@ -11,6 +12,7 @@ function ConfigUser() {
                         <h1 className="titulo">Configurações Usuário </h1>  
                     </div>
                 <hr/> 
+                <img src={ImageUser} className="imagem" alt="ImageUser" />
                 <UserChange />
                 </div>
         </div>

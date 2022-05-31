@@ -24,8 +24,8 @@
 }
 
 .espacoBotoes {
-    padding-top: 400px;
-    padding-left: 220px;
+    padding-top: 200px;
+    padding-left: 300px;
 }
 
 .btnNome {
@@ -49,4 +49,9 @@
     border-radius: 7px;
     margin-left: 14px;
     width: 205px;
+}
+
+.imagem {
+    width: 150px;
+    height: 150px;
 }
