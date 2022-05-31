@@ -15,6 +15,11 @@ import RegistrarFuncionario from '../pages/RegistrarFuncionario'
 import RegistrarFinanca from '../pages/RegistrarFinanca'
 import RegistrarCompromisso from '../pages/RegistrarCompromisso'
 import ConfigUser from '../pages/ConfigUser/Index'
+import HomeManager from '../pages/TelasDoTecnico/Home'
+import JogadoresManager from '../pages/TelasDoTecnico/Jogadores'
+import TreinosManager from '../pages/TelasDoTecnico/Treinos'
+import CompromissoManager from '../pages/TelasDoTecnico/Compromissos'
+import ConfigManager from '../pages/TelasDoTecnico/ConfigManager/Index'
 
 function Rotas() {
   return (
@@ -35,6 +40,11 @@ function Rotas() {
         <Route element={<RegistrarCompromisso />} path="/registro-compromisso"/>
         <Route element={<Cadastro />} path="/cadastro" />
         <Route element={<ConfigUser />} path="/config" /> 
+        <Route element={<HomeManager />} path="home-manager" />
+        <Route element={<JogadoresManager />} path="jogadores-manager" />
+        <Route element={<TreinosManager />} path="treinos-manager" />
+        <Route element={<CompromissoManager />} path="compromissos-manager" />
+        <Route element={<ConfigManager />} path="config-manager" />
       </Routes>
     </BrowserRouter>
   )

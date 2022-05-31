@@ -2,7 +2,7 @@ import React from "react";
 //import { useNavigate } from 'react-router-dom';
 //import { useState } from "react";
 //import supabase from "../../services/api";
-import "./ConfigUser.css"
+import "./ConfigManager.css"
 
 
 function UserChange() { 
