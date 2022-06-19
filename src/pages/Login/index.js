@@ -1,41 +1,26 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import logo from "../../assets/logo.png";
 import supabase from "../../services/api";
+import { AuthContext } from "../../contexts/auth";
 
-function Login() { 
+function Login() {
+
+    const {authenticated, login} = useContext(AuthContext);
+
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [senha, setSenha] = useState('');
   
       const navigate = useNavigate();
   
       async function handleLogin(e){
         e.preventDefault();
-        const usu = {email,
-        password};
-        try {  
-          let { data: user, error, status } = await supabase
-          .from('usuarios')
-          .select(`*`)
-          .eq('email', usu.email)
-          .eq('senha', usu.password)
-          .single()
-  
-          if (error && status !== 406) {
-            throw error
-          }
-  
-          if (user) {
-            navigate('/home');
-          }
-          else {
-            alert("Login ou senha inválidos")
-          }
-    } catch (error) {
-      alert("Login ou senha inválidos")
-    } 
+        
+        console.log("submit", {email, senha});
+
+        login(email, senha);
   }
     
     return (
@@ -44,6 +29,7 @@ function Login() {
                 <img src={logo} className="imagem" alt="Logo" />
                     <h1 className="texto" >Mutiny</h1>
                         <div className="teste2" >
+                          <p>{String(authenticated)}</p>
                             <form onSubmit={handleLogin} >
                                 <div className="mb-3">
                                     <label>Email</label>
@@ -61,8 +47,8 @@ function Login() {
                                     type="password"
                                     className="form-control"
                                     placeholder="Coloque sua Senha"
-                                    value={password}
-                                    onChange = {e=>setPassword(e.target.value)}
+                                    value={senha}
+                                    onChange = {e=>setSenha(e.target.value)}
                                 />
                                 </div>
                                 <div className="mb-3">
