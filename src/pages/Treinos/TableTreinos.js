@@ -1,15 +1,25 @@
 import { useState, useEffect } from 'react';
 import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import supabase from '../../services/api';
 import "bootstrap-icons/font/bootstrap-icons.css";
+
+import { getTreinos } from "../../services/api";
 
 function TableTreinos() {
 
     const navigate = useNavigate();
     const [treinos, setTreinos] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        (async () => {
+            const response = await getTreinos();
+            setTreinos(response.data);
+            setLoading(false);
+        })();
+    }, []);
+
+    /*
     useEffect(() => {
         fetchTreinos()
     }, []);
@@ -22,12 +32,13 @@ function TableTreinos() {
         setTreinos(data)
         setIsLoading(false)
         console.log("data: ", data)
-    }
+    }*/
 
     function handleRegistrarTreinos(e){
         navigate('/registro');
     }
 
+    /*
     async function deleteTreino(id) {
         if (window.confirm("Tem certeza de que deseja excluir este treino?")) {
             try {
@@ -41,7 +52,7 @@ function TableTreinos() {
                 console.error(error)
             }
         }
-    }
+    }*/
 
     return (
         <div >
@@ -56,20 +67,22 @@ function TableTreinos() {
                     </tr>
                 </thead>
                 <tbody>
-                {isLoading ? 
+                {loading ? 
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
-                    : treinos.map(treino => (
+                    : treinos
+                    .sort((a, b) => new Date(a.data) - new Date(b.data))
+                    .map(treino => (
                                 <tr key={treino.id}>
-                                    <td className="text-center">{treino.data}</td>
-                                    <td className="text-center">{treino.horario}</td>
+                                    <td>{(new Date (treino.data)).toLocaleDateString()}</td>
+                                    <td>{(new Date (treino.horario)).toLocaleTimeString()}</td>
                                     <td className="text-center">{treino.tipo}</td>
                                     <td className="text-center">{treino.local}</td>
                                     <td className="text-center">
                                         <Button variant="warning" onClick={handleRegistrarTreinos}><i className="bi bi-pencil-square"></i></Button>
                                         &nbsp;&nbsp;
-                                        <Button variant="danger" onClick={() => deleteTreino(treino.id)}><i className="bi bi-trash-fill"></i></Button>
+                                        <Button variant="danger" /*onClick={() => deleteTreino(treino.id)}*/><i className="bi bi-trash-fill"></i></Button>
                                     </td>
                                 </tr>
                             ))

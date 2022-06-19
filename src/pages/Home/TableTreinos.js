@@ -1,7 +1,21 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import React, { useEffect, useContext, useState } from "react";
+import { Button, Spinner, Table } from 'react-bootstrap';
+
+import { getTreinos } from "../../services/api";
 
 function TableCompromissos() {
+
+    const [treinos, setTreinos] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        (async () => {
+            const response = await getTreinos();
+            setTreinos(response.data);
+            setLoading(false);
+        })();
+    }, []);
+
     return (
         <div>
             <h3>Treinos</h3>
@@ -10,23 +24,27 @@ function TableCompromissos() {
                     <tr>
                         <th>Data</th>
                         <th>Horário</th>
-                        <th>Tipo</th>
-                        <th>Local</th>
+                        <th className="text-center">Tipo</th>
+                        <th className="text-center">Local</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>03/06/2022</td>
-                        <td>16:00</td>
-                        <td>Treino Tático</td>
-                        <td>Campo B</td>
-                    </tr>
-                    <tr>
-                        <td>04/06/2022</td>
-                        <td>16:00</td>
-                        <td>Jogo-Treino</td>
-                        <td>Maracanã</td>
-                    </tr>
+                {loading ? 
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                    : treinos
+                    .sort((a, b) => new Date(a.data) - new Date(b.data))
+                    .slice(0, 3)
+                    .map(treino => (
+                                <tr key={treino.id}>
+                                    <td>{(new Date (treino.data)).toLocaleDateString()}</td>
+                                    <td>{(new Date (treino.horario)).toLocaleTimeString()}</td>
+                                    <td className="text-center">{treino.tipo}</td>
+                                    <td className="text-center">{treino.local}</td>
+                                </tr>
+                            ))
+                        }
                 </tbody>
             </Table>
         </div>

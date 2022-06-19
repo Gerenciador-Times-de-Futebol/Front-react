@@ -1,19 +1,31 @@
 import { useState, useEffect } from 'react';
 import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import supabase from '../../services/api';
+//import supabase from '../../services/api';
 import "bootstrap-icons/font/bootstrap-icons.css";
+
+import { getPlayers } from "../../services/api";
 
 function TableJogadores() {
 
     const navigate = useNavigate();
-    const [jogadores, setJogadores] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [players, setPlayers] = useState([]);
+    const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        (async () => {
+            const response = await getPlayers();
+            setPlayers(response.data);
+            setLoading(false);
+        })();
+    }, []);
+
+    /*
     useEffect(() => {
         fetchJogadores()
     }, []);
 
+    
     async function fetchJogadores() {
         setIsLoading(true);
         const { data } = await supabase
@@ -22,12 +34,13 @@ function TableJogadores() {
         setJogadores(data)
         setIsLoading(false)
         console.log("data: ", data)
-    }
+    }*/
 
     function handleRegistrarJogadores(e){
         navigate('/registro-atleta');
     }
 
+    /*
     async function deleteJogador(id) {
         if (window.confirm("Tem certeza de que deseja excluir este jogador?")) {
             try {
@@ -42,6 +55,7 @@ function TableJogadores() {
             }
         }
     }
+    */
 
     return (
         <div >
@@ -59,23 +73,25 @@ function TableJogadores() {
                     </tr>
                 </thead>
                 <tbody>
-                {isLoading ? 
+                {loading ? 
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
-                    : jogadores.map(jogador => (
-                                <tr key={jogador.id}>
-                                    <td className="text-center">{jogador.camisa}</td>
-                                    <td>{jogador.nome}</td>
-                                    <td>{jogador.posicao}</td>
-                                    <td>{jogador.idade}</td>
-                                    <td>{jogador.termino_contrato}</td>
-                                    <td>{jogador.vinculo}</td>
-                                    <td>{jogador.salario}</td>
+                    : players
+                    .sort((a, b) => a.nome - a.nome)
+                    .map(player => (
+                                <tr key={player.id}>
+                                    <td className="text-center">{player.camisa}</td>
+                                    <td>{player.nome}</td>
+                                    <td>{player.posicao}</td>
+                                    <td>{player.idade}</td>
+                                    <td>{(new Date (player.termino_contrato)).toLocaleDateString()}</td>
+                                    <td>{player.vinculo}</td>
+                                    <td>{player.salario}</td>
                                     <td className="text-center">
                                         <Button variant="warning" onClick={handleRegistrarJogadores}><i className="bi bi-pencil-square"></i></Button>
                                         &nbsp;&nbsp;
-                                        <Button variant="danger" onClick={() => deleteJogador(jogador.id)}><i className="bi bi-trash-fill"></i></Button>
+                                        <Button variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/><i className="bi bi-trash-fill"></i></Button>
                                     </td>
                                 </tr>
                             ))
@@ -84,5 +100,6 @@ function TableJogadores() {
             </Table>
         </div>
     );
- };
+};
+
 export default TableJogadores;

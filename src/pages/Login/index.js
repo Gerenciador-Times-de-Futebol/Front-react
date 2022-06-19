@@ -1,27 +1,22 @@
 import { useState, useContext } from "react";
 import { Container } from "react-bootstrap";
-import { useNavigate } from 'react-router-dom';
-import './style.css';
-import logo from "../../assets/logo.png";
-import supabase from "../../services/api";
 import { AuthContext } from "../../contexts/auth";
+import logo from "../../assets/logo.png";
+import './style.css';
 
 function Login() {
-
     const {authenticated, login} = useContext(AuthContext);
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
   
-      const navigate = useNavigate();
-  
-      async function handleLogin(e){
+    async function handleLogin(e){
         e.preventDefault();
-        
+     
         console.log("submit", {email, senha});
 
         login(email, senha);
-  }
+    }
     
     return (
         <Container  >
@@ -77,4 +72,5 @@ function Login() {
         </Container>
     )
 }
+
 export default Login;

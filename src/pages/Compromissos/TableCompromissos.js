@@ -1,15 +1,25 @@
 import { useState, useEffect } from 'react';
 import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import supabase from '../../services/api';
 import "bootstrap-icons/font/bootstrap-icons.css";
+
+import { getCompromissos } from "../../services/api";
 
 function TableCompromissos() {
 
     const navigate = useNavigate();
     const [compromissos, setCompromissos] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        (async () => {
+            const response = await getCompromissos();
+            setCompromissos(response.data);
+            setLoading(false);
+        })();
+    }, []);
+    
+    /*
     useEffect(() => {
         fetchCompromissos()
     }, []);
@@ -22,12 +32,13 @@ function TableCompromissos() {
         setCompromissos(data)
         setIsLoading(false)
         console.log("data: ", data)
-    }
+    }*/
 
     function handleRegistrarCompromissos(e){
         navigate('/registro-compromisso');
     }
 
+    /*
     async function deleteCompromisso(id) {
         if (window.confirm("Tem certeza de que deseja excluir este compromisso?")) {
             try {
@@ -41,7 +52,7 @@ function TableCompromissos() {
                 console.error(error)
             }
         }
-    }
+    }*/
 
     return (
         <div >
@@ -58,14 +69,16 @@ function TableCompromissos() {
                     </tr>
                 </thead>
                 <tbody>
-                {isLoading ? 
+                {loading ? 
                     <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
                     </Spinner>
-                    : compromissos.map(compromisso => (
+                    : compromissos
+                    .sort((a, b) => new Date(a.data) - new Date(b.data))
+                    .map(compromisso => (
                                 <tr key={compromisso.id}>
-                                    <td>{compromisso.data}</td>
-                                    <td>{compromisso.horario}</td>
+                                    <td>{(new Date (compromisso.data)).toLocaleDateString()}</td>
+                                    <td>{(new Date (compromisso.horario)).toLocaleTimeString()}</td>
                                     <td>{compromisso.anfitriao}</td>
                                     <td>{compromisso.visitante}</td>
                                     <td>{compromisso.local}</td>
@@ -73,7 +86,7 @@ function TableCompromissos() {
                                     <td className="text-center">
                                         <Button variant="warning" onClick={handleRegistrarCompromissos}><i className="bi bi-pencil-square"></i></Button>
                                         &nbsp;&nbsp;
-                                        <Button variant="danger" onClick={() => deleteCompromisso(compromisso.id)}><i className="bi bi-trash-fill"></i></Button>
+                                        <Button variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/><i className="bi bi-trash-fill"></i></Button>
                                     </td>
                                 </tr>
                             ))
@@ -82,5 +95,6 @@ function TableCompromissos() {
             </Table>
         </div>
     );
- };
+};
+
 export default TableCompromissos;

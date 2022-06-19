@@ -1,7 +1,21 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import React, { useEffect, useContext, useState } from "react";
+import { Button, Spinner, Table } from 'react-bootstrap';
+
+import { getCompromissos } from "../../services/api";
 
 function TableCompromissos() {
+
+    const [compromissos, setCompromissos] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        (async () => {
+            const response = await getCompromissos();
+            setCompromissos(response.data);
+            setLoading(false);
+        })();
+    }, []);
+
     return (
         <div >
             <h3>Compromissos</h3>
@@ -17,22 +31,24 @@ function TableCompromissos() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>25/06/2022</td>
-                        <td>16:00</td>
-                        <td>São Paulo</td>
-                        <td>Time Bom</td>
-                        <td>Morumbi</td>
-                        <td>Campeonato Brasileiro</td>
-                    </tr>
-                    <tr>
-                        <td>29/06/2022</td>
-                        <td>17:00</td>
-                        <td>Time Bom</td>
-                        <td>Fluminense</td>
-                        <td>Arena Time Bom</td>
-                        <td>Copa do Brasil</td>
-                    </tr>
+                {loading ? 
+                    <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                    : compromissos
+                    .sort((a, b) => new Date(a.data) - new Date(b.data))
+                    .slice(0, 3)
+                    .map(compromisso => (
+                                <tr key={compromisso.id}>
+                                    <td>{(new Date (compromisso.data)).toLocaleDateString()}</td>
+                                    <td>{(new Date (compromisso.horario)).toLocaleTimeString()}</td>
+                                    <td>{compromisso.anfitriao}</td>
+                                    <td>{compromisso.visitante}</td>
+                                    <td>{compromisso.local}</td>
+                                    <td>{compromisso.torneio}</td>
+                                </tr>
+                            ))
+                        }
                 </tbody>
             </Table>
         </div>

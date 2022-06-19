@@ -9,8 +9,20 @@ export const createSession = async (email, senha) => {
     return api.post('/login', {email, senha});
 }
 
+export const findUser = async () => {
+    return api.get("/users/search/byEmail?email=" + localStorage.getItem("email"));
+}
+
 export const getPlayers = async () => {
     return api.get("/players");
+}
+
+export const getCompromissos = async () => {
+    return api.get("/compromissos");
+}
+
+export const getTreinos = async () => {
+    return api.get("/treinos");
 }
 
 const supabaseUrl = 'https://txpjgrmbtobmktevwsbl.supabase.co'
