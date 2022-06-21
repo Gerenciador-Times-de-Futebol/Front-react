@@ -3,7 +3,9 @@ import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import { getCompromissos } from "../../services/api";
+import { api, getCompromissos } from '../../services/api'
+
+const url = "http://165.227.103.201:8100";
 
 function TableCompromissos() {
 
@@ -40,6 +42,20 @@ function TableCompromissos() {
     function handleEditarCompromissos(uuid){
         navigate(`/editar-compromisso/${uuid}`);
     }
+
+    function remove(uuid) {
+        console.log(uuid);
+        if (window.confirm("Tem certeza de que deseja excluir este compromisso?")) {
+          api
+            .delete(url + "/compromissos/" + uuid)
+            .then((res) => {
+              console.log(res.data);
+              const myalldata = compromissos.filter((item) => item.uuid !== uuid);
+              setCompromissos(myalldata);
+            })
+            .catch((err) => console.error(err));
+        }
+      }
     
     /*
     async function deleteCompromisso(id) {
@@ -89,7 +105,7 @@ function TableCompromissos() {
                                     <td className="text-center">
                                         <Button variant="warning" onClick={() => {handleEditarCompromissos(compromisso.uuid)}}><i className="bi bi-pencil-square"></i></Button>
                                         &nbsp;&nbsp;
-                                        <Button variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/><i className="bi bi-trash-fill"></i></Button>
+                                        <Button variant="danger" onClick={() => remove(compromisso.uuid)}><i className="bi bi-trash-fill"></i></Button>
                                     </td>
                                 </tr>
                             ))

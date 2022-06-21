@@ -9,6 +9,7 @@ import Despesas from '../pages/Despesas'
 import EditarAtletas from '../pages/EditarAtletas'
 import EditarFuncionario from '../pages/EditarFuncionario'
 import EditarCompromisso from '../pages/EditarCompromisso'
+import EditarTreino from '../pages/EditarTreino'
 import Financas from '../pages/Financas'
 import Home from '../pages/Home'
 import Jogadores from '../pages/Jogadores'
@@ -18,6 +19,7 @@ import RegistrarAtletas from '../pages/RegistrarAtletas'
 import RegistrarCompromisso from '../pages/RegistrarCompromisso'
 import RegistrarFinanca from '../pages/RegistrarFinanca'
 import RegistrarFuncionario from '../pages/RegistrarFuncionario'
+import RegistrarTreino from '../pages/RegistrarTreino'
 import CompromissoManager from '../pages/TelasDoTecnico/Compromissos'
 import ConfigManager from '../pages/TelasDoTecnico/ConfigManager/Index'
 import HomeManager from '../pages/TelasDoTecnico/Home'
@@ -63,6 +65,8 @@ function Rotas() {
           <Route element={<RegistrarFinanca />} path="/registro-financa" />
           <Route element={<RegistrarCompromisso />} path="/registro-compromisso"/>
           <Route element={<EditarCompromisso />} path="/editar-compromisso:uuid"/>
+          <Route element={<RegistrarTreino />} path="/registro-treino"/>
+          <Route element={<EditarTreino />} path="/editar-treino:uuid"/>
           <Route element={<Cadastro />} path="/cadastro" />
           <Route element={<ConfigUser />} path="/config" /> 
           <Route element={<HomeManager />} path="home-manager" />

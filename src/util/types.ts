@@ -18,6 +18,14 @@ export interface Compromisso {
   torneio: string
 }
 
+export interface Treino {
+  uuid?: string
+  data: Date
+  horario: Date
+  local: string
+  tipo: string
+}
+
 export interface Funcionario {
   nome: string
   funcao: string

@@ -4,7 +4,9 @@ import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 //import supabase from '../../services/api';
 
-import { getEmployee } from '../../services/api'
+import { api, getEmployee } from '../../services/api';
+
+const url = "http://165.227.103.201:8100";
 
 function TableComissao() {
 
@@ -41,6 +43,20 @@ function TableComissao() {
     function handleEditarComissao(nome){
         navigate(`/editar-funcionario/${nome}`);
     }
+
+    function remove(nome) {
+        console.log(nome);
+        if (window.confirm("Tem certeza de que deseja excluir este funcionário?")) {
+          api
+            .delete(url + "/employees/" + nome)
+            .then((res) => {
+              console.log(res.data);
+              const myalldata = employees.filter((item) => item.nome !== nome);
+              setEmployees(myalldata);
+            })
+            .catch((err) => console.error(err));
+        }
+      }
 
     /*
     async function deleteComissao(id) {
@@ -97,7 +113,7 @@ function TableComissao() {
                                 </Button>
                                 &nbsp;&nbsp;
                                 <Button
-                                variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/
+                                variant="danger" onClick={() => remove(employee.nome)}
                                 >
                                 <i className="bi bi-trash-fill"></i>
                                 </Button>

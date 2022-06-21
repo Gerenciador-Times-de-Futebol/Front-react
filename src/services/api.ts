@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import axios from 'axios'
-import { Compromisso, Financa, Funcionario, Player } from '../util/types'
+import { Compromisso, Treino, Financa, Funcionario, Player } from '../util/types'
 
 export const api = axios.create({
   baseURL: 'http://165.227.103.201:8100'
@@ -43,6 +43,17 @@ export const editCompromissos = async (
 
 export const getTreinos = async () => {
   return api.get('/treinos')
+}
+
+export const createTreinos = async (treino: Treino) => {
+  return api.post('/treinos', treino)
+}
+
+export const editTreinos = async (
+  treino: Treino,
+  uuid: string,
+) => {
+  return api.post(`/treinos/${uuid}`, treino)
 }
 
 export const getFinancas = async () => {

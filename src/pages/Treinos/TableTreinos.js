@@ -3,7 +3,9 @@ import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import { getTreinos } from "../../services/api";
+import { api, getTreinos } from '../../services/api'
+
+const url = "http://165.227.103.201:8100";
 
 function TableTreinos() {
 
@@ -34,9 +36,26 @@ function TableTreinos() {
         console.log("data: ", data)
     }*/
 
-    function handleRegistrarTreinos(e){
-        navigate('/registro');
-    }
+    function handleRegistrarTreinos(e) {
+        navigate('/registro-treino')
+      }
+      function handleEditarTreinos(uuid) {
+        navigate(`/editar-treino/${uuid}`)
+      }
+
+    function remove(uuid) {
+        console.log(uuid);
+        if (window.confirm("Tem certeza de que deseja excluir este treino?")) {
+          api
+            .delete(url + "/treinos/" + uuid)
+            .then((res) => {
+              console.log(res.data);
+              const myalldata = treinos.filter((item) => item.uuid !== uuid);
+              setTreinos(myalldata);
+            })
+            .catch((err) => console.error(err));
+        }
+      }
 
     /*
     async function deleteTreino(id) {
@@ -80,9 +99,9 @@ function TableTreinos() {
                                     <td className="text-center">{treino.tipo}</td>
                                     <td className="text-center">{treino.local}</td>
                                     <td className="text-center">
-                                        <Button variant="warning" onClick={handleRegistrarTreinos}><i className="bi bi-pencil-square"></i></Button>
+                                        <Button variant="warning" onClick={() => handleEditarTreinos(treino.uuid)}><i className="bi bi-pencil-square"></i></Button>
                                         &nbsp;&nbsp;
-                                        <Button variant="danger" /*onClick={() => deleteTreino(treino.id)}*/><i className="bi bi-trash-fill"></i></Button>
+                                        <Button variant="danger" onClick={() => remove(treino.uuid)}><i className="bi bi-trash-fill"></i></Button>
                                     </td>
                                 </tr>
                             ))

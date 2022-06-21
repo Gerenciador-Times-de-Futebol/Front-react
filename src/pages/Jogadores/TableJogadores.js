@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom'
 //import supabase from '../../services/api';
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
-import { getPlayers } from '../../services/api'
+import { api, getPlayers } from '../../services/api'
+
+const url = "http://165.227.103.201:8100";
 
 function TableJogadores() {
   const navigate = useNavigate()
@@ -40,6 +42,20 @@ function TableJogadores() {
   }
   function handleEditarJogadores(nome) {
     navigate(`/editar-atleta/${nome}`)
+  }
+
+  function remove(nome) {
+    console.log(nome);
+    if (window.confirm("Tem certeza de que deseja excluir este jogador?")) {
+      api
+        .delete(url + "/players/" + nome)
+        .then((res) => {
+          console.log(res.data);
+          const myalldata = players.filter((item) => item.nome !== nome);
+          setPlayers(myalldata);
+        })
+        .catch((err) => console.error(err));
+    }
   }
 
   /*
@@ -80,12 +96,11 @@ function TableJogadores() {
           </tr>
         </thead>
         <tbody>
-          {loading ? (
+          {loading ?
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
-          ) : (
-            players
+            : players
               .sort((a, b) => a.nome > b.nome ? 1 : -1)
               .map(player => (
                 <tr key={player.id}>
@@ -109,14 +124,14 @@ function TableJogadores() {
                     </Button>
                     &nbsp;&nbsp;
                     <Button
-                      variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/
+                      variant="danger" onClick={() => remove(player.nome)}
                     >
                       <i className="bi bi-trash-fill"></i>
                     </Button>
                   </td>
                 </tr>
               ))
-          )}
+          }
         </tbody>
       </Table>
     </div>

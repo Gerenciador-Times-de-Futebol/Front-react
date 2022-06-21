@@ -24,7 +24,7 @@ function Treinos() {
                         </a>
                         <a 
                             style={{ color:'black', textDecoration: 'none' }} 
-                            href="/registro" className="float-start">
+                            href="/registro-treino" className="float-start">
                                 <i class="bi bi-plus-circle-fill"></i>
                                 &nbsp;Agendar Novo Treino&nbsp;&nbsp;
                         </a>
