@@ -27,7 +27,7 @@ const EditarCompromisso: React.FC = () => {
       uuid!,
     )
 
-    console.log('compromisso adicionado: ', data)
+    console.log('compromisso editado: ', data)
     navigate('/compromissos')
   }
 
@@ -83,7 +83,7 @@ const EditarCompromisso: React.FC = () => {
           onChange={e => setTournament(e.target.value)}
         />
 
-        <Submit>CADASTRAR</Submit>
+        <Submit>EDITAR</Submit>
       </LoginBox>
       <Footer>
         <Return onClick={() => navigate(-1)}>

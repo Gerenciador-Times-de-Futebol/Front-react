@@ -38,7 +38,7 @@ export const editCompromissos = async (
   compromisso: Compromisso,
   uuid: string,
 ) => {
-  return api.post(`/compromissos/${uuid}`, compromisso)
+  return api.put(`/compromissos/${uuid}`, compromisso)
 }
 
 export const getTreinos = async () => {
@@ -53,7 +53,7 @@ export const editTreinos = async (
   treino: Treino,
   uuid: string,
 ) => {
-  return api.post(`/treinos/${uuid}`, treino)
+  return api.put(`/treinos/${uuid}`, treino)
 }
 
 export const getFinancas = async () => {
@@ -65,7 +65,7 @@ export const createFinancas = async (financa: Financa) => {
 }
 
 export const editFinancas = async (financa: Financa, nome: string) => {
-  return api.post(`/financas/${nome}`, financa)
+  return api.put(`/financas/${nome}`, financa)
 }
 
 export const getEmployee = async () => {
@@ -77,7 +77,7 @@ export const createEmployee = async (funcionario: Funcionario) => {
 }
 
 export const editEmployee = async (funcionario: Funcionario, nome: string) => {
-  return api.post(`/employees/${nome}`, funcionario)
+  return api.put(`/employees/${nome}`, funcionario)
 }
 
 const supabaseUrl = 'https://txpjgrmbtobmktevwsbl.supabase.co'

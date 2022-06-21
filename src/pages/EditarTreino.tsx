@@ -67,7 +67,7 @@ const EditarTreino: React.FC = () => {
           onChange={e => setType(e.target.value)}
         />
 
-        <Submit>CADASTRAR</Submit>
+        <Submit>EDITAR</Submit>
       </LoginBox>
       <Footer>
         <Return onClick={() => navigate(-1)}>

@@ -37,7 +37,7 @@ const EditarAtletas: React.FC = () => {
 
     const { data } = await editPlayer(a, nome!)
 
-    console.log('jogador adicionado: ', data)
+    console.log('jogador editado: ', data)
     navigate('/jogadores')
   }
 
@@ -95,7 +95,7 @@ const EditarAtletas: React.FC = () => {
           value={shirt}
           onChange={e => setShirt(e.target.value)}
         />
-        <Submit>CADASTRAR</Submit>
+        <Submit>EDITAR</Submit>
       </LoginBox>
       <Footer>
         <Return onClick={() => navigate(-1)}>

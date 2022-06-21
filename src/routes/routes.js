@@ -61,12 +61,12 @@ function Rotas() {
           <Route element={<RegistrarAtletas />} path="/registro-atleta" />
           <Route element={<EditarAtletas />} path="/editar-atleta/:nome" />
           <Route element={<RegistrarFuncionario />} path="/registro-funcionario" />
-          <Route element={<EditarFuncionario />} path="/editar-funcionario:nome" />
+          <Route element={<EditarFuncionario />} path="/editar-funcionario/:nome" />
           <Route element={<RegistrarFinanca />} path="/registro-financa" />
           <Route element={<RegistrarCompromisso />} path="/registro-compromisso"/>
-          <Route element={<EditarCompromisso />} path="/editar-compromisso:uuid"/>
+          <Route element={<EditarCompromisso />} path="/editar-compromisso/:uuid"/>
           <Route element={<RegistrarTreino />} path="/registro-treino"/>
-          <Route element={<EditarTreino />} path="/editar-treino:uuid"/>
+          <Route element={<EditarTreino />} path="/editar-treino/:uuid"/>
           <Route element={<Cadastro />} path="/cadastro" />
           <Route element={<ConfigUser />} path="/config" /> 
           <Route element={<HomeManager />} path="home-manager" />

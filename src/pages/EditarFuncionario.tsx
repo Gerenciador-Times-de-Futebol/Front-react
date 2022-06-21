@@ -31,14 +31,14 @@ const EditarFuncionario: React.FC = () => {
       },
       nome!,
     )
-    console.log('funcionario adicionado: ', data)
+    console.log('funcionario editado: ', data)
     navigate('/comissao')
   }
 
   return (
     <Container>
       <Header>
-        <h1>Cadastrar novos funcionários</h1>
+        <h1>Editar funcionário</h1>
       </Header>
       <LoginBox onSubmit={handleSubmit}>
         <Player src={player} />
@@ -68,7 +68,7 @@ const EditarFuncionario: React.FC = () => {
           value={birthday}
           onChange={e => setBirthday(e.target.value)}
         />
-        <Submit>CADASTRAR</Submit>
+        <Submit>EDITAR</Submit>
       </LoginBox>
       <Footer>
         <Return onClick={() => navigate(-1)}>
