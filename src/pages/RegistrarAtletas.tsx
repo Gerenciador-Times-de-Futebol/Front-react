@@ -1,46 +1,49 @@
 import styled from '@emotion/styled'
-import InputBox from '../components/InputBox'
-import background from '../assets/background_dashboard.png'
-import player from '../assets/soccer-player.png'
-import back from '../assets/left-arrow.png'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import supabase from '../services/api'
+import background from '../assets/background_dashboard.png'
+import back from '../assets/left-arrow.png'
+import player from '../assets/soccer-player.png'
+import InputBox from '../components/InputBox'
+import { createPlayer } from '../services/api'
 
 const RegistrarAtletas: React.FC = () => {
   const [name, setName] = useState('')
   const [position, setPosition] = useState('')
   const [contract, setContract] = useState('')
   const [income, setIncome] = useState('')
-  const [birthday, setBirthday] = useState('')
-  const [email, setEmail] = useState('')
+  const [age, setAge] = useState('')
+  const [shirt, setShirt] = useState('')
 
   const navigate = useNavigate()
 
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data, error } = await supabase.from('Jogadores').insert([
-      {
-        nome: name,
-        posicao: position,
-        termino_contrato: contract,
-        salario: income,
-      },
-    ])
+    const a = {
+      nome: name,
+      posicao: position,
+      termino_contrato: new Date(contract),
+      salario: parseInt(income),
+      idade: parseInt(age),
+      camisa: parseInt(shirt),
+    }
 
-    if (error) throw error
-    else console.log('jogador adicionado: ' + data.toString())
-    navigate('/')
+    console.log(a)
+
+    const { data } = await createPlayer(a)
+
+    console.log('jogador adicionado: ', data)
+    navigate('/jogadores')
   }
 
-  // useEffect(() => {
-  //   console.log(birthday)
-  //   const a = new Date(birthday)
-  //   if (!isNaN(a.getTime())) {
-  //     console.log(a.toISOString())
-  //   }
-  // }, [birthday])
+  useEffect(() => {
+    console.log(age)
+    const a = new Date(age)
+    if (!isNaN(a.getTime())) {
+      console.log(a.toISOString())
+    }
+  }, [age])
 
   return (
     <Container>
@@ -67,19 +70,21 @@ const RegistrarAtletas: React.FC = () => {
         />
         <InputBox
           input="Salário"
+          type="number"
           value={income}
           onChange={e => setIncome(e.target.value)}
         />
         <InputBox
-          input="Nascimento"
-          type="date"
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
+          input="Idade"
+          type="number"
+          value={age}
+          onChange={e => setAge(e.target.value)}
         />
         <InputBox
-          input="E-mail"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          input="Camisa"
+          type="number"
+          value={shirt}
+          onChange={e => setShirt(e.target.value)}
         />
         <Submit>CADASTRAR</Submit>
       </LoginBox>

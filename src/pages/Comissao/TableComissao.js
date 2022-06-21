@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import { useEffect, useState } from 'react';
 import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../../services/api';
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 function TableComissao() {
 
@@ -26,6 +26,9 @@ function TableComissao() {
 
     function handleRegistrarComissao(e){
         navigate('/registro-funcionario');
+    }
+    function handleEditarComissao(nome){
+        navigate(`/editar-funcionario/${nome}`);
     }
 
     async function deleteComissao(id) {
@@ -69,7 +72,7 @@ function TableComissao() {
                                     <td>{funcionario.departamento}</td>
                                     <td>{funcionario.salario}</td>
                                     <td className="text-center">
-                                        <Button variant="warning" onClick={handleRegistrarComissao}><i className="bi bi-pencil-square"></i></Button>
+                                        <Button variant="warning" onClick={()=>handleEditarComissao(funcionario.nome)}><i className="bi bi-pencil-square"></i></Button>
                                         &nbsp;&nbsp;
                                         <Button variant="danger" onClick={() => deleteComissao(funcionario.id)}><i className="bi bi-trash-fill"></i></Button>
                                     </td>

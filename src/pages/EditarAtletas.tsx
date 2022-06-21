@@ -1,38 +1,56 @@
 import styled from '@emotion/styled'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import background from '../assets/background_dashboard.png'
 import back from '../assets/left-arrow.png'
 import player from '../assets/soccer-player.png'
 import InputBox from '../components/InputBox'
-import { createEmployee } from '../services/api'
+import { editPlayer } from '../services/api'
 
-const RegistrarFuncionario: React.FC = () => {
+const EditarAtletas: React.FC = () => {
   const [name, setName] = useState('')
-  const [post, setPost] = useState('')
-  const [gender, setGender] = useState('')
+  const [position, setPosition] = useState('')
+  const [contract, setContract] = useState('')
   const [income, setIncome] = useState('')
-  const [birthday, setBirthday] = useState('')
+  const [age, setAge] = useState('')
+  const [shirt, setShirt] = useState('')
+
+  const { nome } = useParams()
 
   const navigate = useNavigate()
 
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data } = await createEmployee({
+    const a = {
       nome: name,
-      funcao: post,
-      data_nascimento: new Date(birthday),
+      posicao: position,
+      termino_contrato: new Date(contract),
       salario: parseInt(income),
-    })
-    console.log('funcionario adicionado: ', data)
-    navigate('/comissao')
+      idade: parseInt(age),
+      camisa: parseInt(shirt),
+    }
+
+    console.log(a)
+
+    const { data } = await editPlayer(a, nome!)
+
+    console.log('jogador adicionado: ', data)
+    navigate('/jogadores')
   }
+
+  useEffect(() => {
+    console.log(age)
+    const a = new Date(age)
+    if (!isNaN(a.getTime())) {
+      console.log(a.toISOString())
+    }
+  }, [age])
 
   return (
     <Container>
       <Header>
-        <h1>Cadastrar novos funcionários</h1>
+        <h1>Editar jogador</h1>
       </Header>
       <LoginBox onSubmit={handleSubmit}>
         <Player src={player} />
@@ -42,25 +60,33 @@ const RegistrarFuncionario: React.FC = () => {
           onChange={e => setName(e.target.value)}
         />
         <InputBox
-          input="Cargo"
-          value={post}
-          onChange={e => setPost(e.target.value)}
+          input="Posição"
+          value={position}
+          onChange={e => setPosition(e.target.value)}
         />
         <InputBox
-          input="Gênero"
-          value={gender}
-          onChange={e => setGender(e.target.value)}
+          input="Término do contrato"
+          type="date"
+          value={contract}
+          onChange={e => setContract(e.target.value)}
         />
         <InputBox
           input="Salário"
+          type="number"
           value={income}
           onChange={e => setIncome(e.target.value)}
         />
         <InputBox
-          input="Nascimento"
-          type="date"
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
+          input="Idade"
+          type="number"
+          value={age}
+          onChange={e => setAge(e.target.value)}
+        />
+        <InputBox
+          input="Camisa"
+          type="number"
+          value={shirt}
+          onChange={e => setShirt(e.target.value)}
         />
         <Submit>CADASTRAR</Submit>
       </LoginBox>
@@ -73,7 +99,7 @@ const RegistrarFuncionario: React.FC = () => {
   )
 }
 
-export default RegistrarFuncionario
+export default EditarAtletas
 
 const Container = styled.div`
   background-image: url(${background});

@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
-import InputBox from '../components/InputBox'
-import background from '../assets/background_dashboard.png'
-import player from '../assets/soccer-player.png'
-import back from '../assets/left-arrow.png'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import supabase from '../services/api'
+import background from '../assets/background_dashboard.png'
+import back from '../assets/left-arrow.png'
+import player from '../assets/soccer-player.png'
+import InputBox from '../components/InputBox'
+import { createCompromissos } from '../services/api'
 
 const RegistrarCompromisso: React.FC = () => {
   const navigate = useNavigate()
@@ -13,18 +13,15 @@ const RegistrarCompromisso: React.FC = () => {
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data, error } = await supabase.from('Compromissos').insert([
-      {
-        data: date,
-        horario: time,
-        local: place,
-        torneio: type,
-      },
-    ])
+    const { data } = await createCompromissos({
+      data: new Date(date),
+      horario: new Date(time),
+      local: place,
+      torneio: type,
+    })
 
-    if (error) throw error
-    else console.log('jogador adicionado: ' + data.toString())
-    navigate('/')
+    console.log('compromisso adicionado: ', data)
+    navigate('/compromissos')
   }
 
   const [date, setDate] = useState('')

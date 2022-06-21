@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
-import InputBox from '../components/InputBox'
-import background from '../assets/background_dashboard.png'
-import player from '../assets/soccer-player.png'
-import back from '../assets/left-arrow.png'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import supabase from '../services/api'
+import background from '../assets/background_dashboard.png'
+import back from '../assets/left-arrow.png'
+import player from '../assets/soccer-player.png'
+import InputBox from '../components/InputBox'
+import { createFinancas } from '../services/api'
 
 const RegistrarFinanca: React.FC = () => {
   const [name, setName] = useState('')
@@ -18,18 +18,16 @@ const RegistrarFinanca: React.FC = () => {
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data, error } = await supabase.from('Financas').insert([
-      {
-        nome: name,
-        valor: value,
-        tipo: type,
-      },
-    ])
+    const { data } = await createFinancas({
+      nome: name,
+      valor: parseInt(value),
+      tipo: type,
+      dataFinancas: new Date(date),
+    })
 
-    if (error) throw error
-    else console.log('finança adicionada: ' + data.toString())
+    console.log('finança adicionada: ', data)
 
-    navigate('/')
+    navigate('/financas')
   }
 
   return (
@@ -70,6 +68,7 @@ const RegistrarFinanca: React.FC = () => {
 
         <InputBox
           input="Valor"
+          type="number"
           value={value}
           onChange={e => setValue(e.target.value)}
         />

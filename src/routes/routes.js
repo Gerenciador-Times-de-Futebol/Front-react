@@ -1,28 +1,31 @@
-import React, {useContext} from 'react'
-import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
-import Login from '../pages/Login'
+import Cadastro from '../pages/Cadastro'
+import Comissao from '../pages/Comissao'
+import Compromissos from '../pages/Compromissos'
+import ConfigUser from '../pages/ConfigUser/Index'
+import Despesas from '../pages/Despesas'
+import EditarAtletas from '../pages/EditarAtletas'
+import EditarFuncionario from '../pages/EditarFuncionario'
+import EditarCompromisso from '../pages/EditarCompromisso'
+import Financas from '../pages/Financas'
 import Home from '../pages/Home'
 import Jogadores from '../pages/Jogadores'
-import Comissao from '../pages/Comissao'
-import Financas from '../pages/Financas'
+import Login from '../pages/Login'
 import Lucros from '../pages/Lucros'
-import Despesas from '../pages/Despesas'
-import Compromissos from '../pages/Compromissos'
-import Treinos from '../pages/Treinos'
 import RegistrarAtletas from '../pages/RegistrarAtletas'
-import Cadastro from '../pages/Cadastro'
-import RegistrarFuncionario from '../pages/RegistrarFuncionario'
-import RegistrarFinanca from '../pages/RegistrarFinanca'
 import RegistrarCompromisso from '../pages/RegistrarCompromisso'
-import ConfigUser from '../pages/ConfigUser/Index'
+import RegistrarFinanca from '../pages/RegistrarFinanca'
+import RegistrarFuncionario from '../pages/RegistrarFuncionario'
+import CompromissoManager from '../pages/TelasDoTecnico/Compromissos'
+import ConfigManager from '../pages/TelasDoTecnico/ConfigManager/Index'
 import HomeManager from '../pages/TelasDoTecnico/Home'
 import JogadoresManager from '../pages/TelasDoTecnico/Jogadores'
 import TreinosManager from '../pages/TelasDoTecnico/Treinos'
-import CompromissoManager from '../pages/TelasDoTecnico/Compromissos'
-import ConfigManager from '../pages/TelasDoTecnico/ConfigManager/Index'
+import Treinos from '../pages/Treinos'
 
-import {AuthProvider, AuthContext} from "../contexts/auth"
+import { AuthContext, AuthProvider } from "../contexts/auth"
 
 function Rotas() {
 
@@ -54,9 +57,12 @@ function Rotas() {
           <Route element={<Compromissos />} path="/compromissos" />
           <Route element={<Treinos />} path="/treinos" />
           <Route element={<RegistrarAtletas />} path="/registro-atleta" />
+          <Route element={<EditarAtletas />} path="/editar-atleta/:nome" />
           <Route element={<RegistrarFuncionario />} path="/registro-funcionario" />
+          <Route element={<EditarFuncionario />} path="/editar-funcionario:nome" />
           <Route element={<RegistrarFinanca />} path="/registro-financa" />
           <Route element={<RegistrarCompromisso />} path="/registro-compromisso"/>
+          <Route element={<EditarCompromisso />} path="/editar-compromisso:uuid"/>
           <Route element={<Cadastro />} path="/cadastro" />
           <Route element={<ConfigUser />} path="/config" /> 
           <Route element={<HomeManager />} path="home-manager" />

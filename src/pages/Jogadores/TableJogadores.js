@@ -1,26 +1,25 @@
-import { useState, useEffect } from 'react';
-import { Button, Spinner, Table } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { Button, Spinner, Table } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 //import supabase from '../../services/api';
-import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
-import { getPlayers } from "../../services/api";
+import { getPlayers } from '../../services/api'
 
 function TableJogadores() {
+  const navigate = useNavigate()
+  const [players, setPlayers] = useState([])
+  const [loading, setLoading] = useState(false)
 
-    const navigate = useNavigate();
-    const [players, setPlayers] = useState([]);
-    const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    ;(async () => {
+      const response = await getPlayers()
+      setPlayers(response.data)
+      setLoading(false)
+    })()
+  }, [])
 
-    useEffect(() => {
-        (async () => {
-            const response = await getPlayers();
-            setPlayers(response.data);
-            setLoading(false);
-        })();
-    }, []);
-
-    /*
+  /*
     useEffect(() => {
         fetchJogadores()
     }, []);
@@ -36,11 +35,14 @@ function TableJogadores() {
         console.log("data: ", data)
     }*/
 
-    function handleRegistrarJogadores(e){
-        navigate('/registro-atleta');
-    }
+  function handleRegistrarJogadores(e) {
+    navigate('/registro-atleta')
+  }
+  function handleEditarJogadores(nome) {
+    navigate(`/editar-atleta/${nome}`)
+  }
 
-    /*
+  /*
     async function deleteJogador(id) {
         if (window.confirm("Tem certeza de que deseja excluir este jogador?")) {
             try {
@@ -57,49 +59,68 @@ function TableJogadores() {
     }
     */
 
-    return (
-        <div >
-            <Table striped bordered hover style={{ backgroundColor:'white', color:'black' }}>
-                <thead>
-                    <tr className="text-center">
-                        <th>Camisa</th>
-                        <th>Nome</th>
-                        <th>Posição</th>
-                        <th>Idade</th>
-                        <th>Término de contrato</th>
-                        <th>Vínculo</th>
-                        <th>Salário (R$)</th>
-                        <th>Editar/Excluir</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {loading ? 
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                    : players
-                    .sort((a, b) => a.nome - a.nome)
-                    .map(player => (
-                                <tr key={player.id}>
-                                    <td className="text-center">{player.camisa}</td>
-                                    <td>{player.nome}</td>
-                                    <td>{player.posicao}</td>
-                                    <td>{player.idade}</td>
-                                    <td>{(new Date (player.termino_contrato)).toLocaleDateString()}</td>
-                                    <td>{player.vinculo}</td>
-                                    <td>{player.salario}</td>
-                                    <td className="text-center">
-                                        <Button variant="warning" onClick={handleRegistrarJogadores}><i className="bi bi-pencil-square"></i></Button>
-                                        &nbsp;&nbsp;
-                                        <Button variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/><i className="bi bi-trash-fill"></i></Button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                </tbody>
-            </Table>
-        </div>
-    );
-};
+  return (
+    <div>
+      <Table
+        striped
+        bordered
+        hover
+        style={{ backgroundColor: 'white', color: 'black' }}
+      >
+        <thead>
+          <tr className="text-center">
+            <th>Camisa</th>
+            <th>Nome</th>
+            <th>Posição</th>
+            <th>Idade</th>
+            <th>Término de contrato</th>
+            <th>Vínculo</th>
+            <th>Salário (R$)</th>
+            <th>Editar/Excluir</th>
+          </tr>
+        </thead>
+        <tbody>
+          {loading ? (
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          ) : (
+            players
+              .sort((a, b) => a.nome - a.nome)
+              .map(player => (
+                <tr key={player.id}>
+                  <td className="text-center">{player.camisa}</td>
+                  <td>{player.nome}</td>
+                  <td>{player.posicao}</td>
+                  <td>{player.idade}</td>
+                  <td>
+                    {new Date(player.termino_contrato).toLocaleDateString()}
+                  </td>
+                  <td>{player.vinculo}</td>
+                  <td>{player.salario}</td>
+                  <td className="text-center">
+                    <Button
+                      variant="warning"
+                      onClick={() => {
+                        handleEditarJogadores(player.nome)
+                      }}
+                    >
+                      <i className="bi bi-pencil-square"></i>
+                    </Button>
+                    &nbsp;&nbsp;
+                    <Button
+                      variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/
+                    >
+                      <i className="bi bi-trash-fill"></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))
+          )}
+        </tbody>
+      </Table>
+    </div>
+  )
+}
 
-export default TableJogadores;
+export default TableJogadores

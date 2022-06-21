@@ -1,30 +1,35 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import background from '../assets/background_dashboard.png'
 import back from '../assets/left-arrow.png'
 import player from '../assets/soccer-player.png'
 import InputBox from '../components/InputBox'
-import { createEmployee } from '../services/api'
+import { editEmployee } from '../services/api'
 
-const RegistrarFuncionario: React.FC = () => {
+const EditarFuncionario: React.FC = () => {
   const [name, setName] = useState('')
   const [post, setPost] = useState('')
   const [gender, setGender] = useState('')
   const [income, setIncome] = useState('')
   const [birthday, setBirthday] = useState('')
 
+  const { nome } = useParams()
+
   const navigate = useNavigate()
 
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data } = await createEmployee({
-      nome: name,
-      funcao: post,
-      data_nascimento: new Date(birthday),
-      salario: parseInt(income),
-    })
+    const { data } = await editEmployee(
+      {
+        nome: name,
+        funcao: post,
+        data_nascimento: new Date(birthday),
+        salario: parseInt(income),
+      },
+      nome!,
+    )
     console.log('funcionario adicionado: ', data)
     navigate('/comissao')
   }
@@ -73,7 +78,7 @@ const RegistrarFuncionario: React.FC = () => {
   )
 }
 
-export default RegistrarFuncionario
+export default EditarFuncionario
 
 const Container = styled.div`
   background-image: url(${background});

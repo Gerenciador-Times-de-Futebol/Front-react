@@ -37,7 +37,10 @@ function TableCompromissos() {
     function handleRegistrarCompromissos(e){
         navigate('/registro-compromisso');
     }
-
+    function handleEditarCompromissos(uuid){
+        navigate(`/editar-compromisso/${uuid}`);
+    }
+    
     /*
     async function deleteCompromisso(id) {
         if (window.confirm("Tem certeza de que deseja excluir este compromisso?")) {
@@ -84,7 +87,7 @@ function TableCompromissos() {
                                     <td>{compromisso.local}</td>
                                     <td>{compromisso.torneio}</td>
                                     <td className="text-center">
-                                        <Button variant="warning" onClick={handleRegistrarCompromissos}><i className="bi bi-pencil-square"></i></Button>
+                                        <Button variant="warning" onClick={() => {handleEditarCompromissos(compromisso.uuid)}}><i className="bi bi-pencil-square"></i></Button>
                                         &nbsp;&nbsp;
                                         <Button variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/><i className="bi bi-trash-fill"></i></Button>
                                     </td>

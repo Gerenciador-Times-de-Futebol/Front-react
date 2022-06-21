@@ -1,67 +1,72 @@
 import styled from '@emotion/styled'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import background from '../assets/background_dashboard.png'
 import back from '../assets/left-arrow.png'
 import player from '../assets/soccer-player.png'
 import InputBox from '../components/InputBox'
-import { createEmployee } from '../services/api'
+import { editCompromissos } from '../services/api'
 
-const RegistrarFuncionario: React.FC = () => {
-  const [name, setName] = useState('')
-  const [post, setPost] = useState('')
-  const [gender, setGender] = useState('')
-  const [income, setIncome] = useState('')
-  const [birthday, setBirthday] = useState('')
-
+const EditarCompromisso: React.FC = () => {
   const navigate = useNavigate()
+
+  const { uuid } = useParams()
 
   const handleSubmit: React.FormEventHandler = async e => {
     e.preventDefault()
 
-    const { data } = await createEmployee({
-      nome: name,
-      funcao: post,
-      data_nascimento: new Date(birthday),
-      salario: parseInt(income),
-    })
-    console.log('funcionario adicionado: ', data)
-    navigate('/comissao')
+    const { data } = await editCompromissos(
+      {
+        data: new Date(date),
+        horario: new Date(time),
+        local: place,
+        torneio: type,
+      },
+      uuid!,
+    )
+
+    console.log('compromisso adicionado: ', data)
+    navigate('/compromissos')
   }
+
+  const [date, setDate] = useState('')
+  const [time, setTime] = useState('')
+  const [type, setType] = useState('')
+  const [place, setPlace] = useState('')
 
   return (
     <Container>
       <Header>
-        <h1>Cadastrar novos funcionários</h1>
+        <h1>Editar compromisso</h1>
       </Header>
       <LoginBox onSubmit={handleSubmit}>
         <Player src={player} />
+
         <InputBox
-          input="Nome"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <InputBox
-          input="Cargo"
-          value={post}
-          onChange={e => setPost(e.target.value)}
-        />
-        <InputBox
-          input="Gênero"
-          value={gender}
-          onChange={e => setGender(e.target.value)}
-        />
-        <InputBox
-          input="Salário"
-          value={income}
-          onChange={e => setIncome(e.target.value)}
-        />
-        <InputBox
-          input="Nascimento"
+          input="Data"
           type="date"
-          value={birthday}
-          onChange={e => setBirthday(e.target.value)}
+          value={date}
+          onChange={e => setDate(e.target.value)}
         />
+        <InputBox
+          input="Horário"
+          type="time"
+          value={time}
+          onChange={e => setTime(e.target.value)}
+        />
+
+        <InputBox
+          input="Tipo"
+          value={type}
+          onChange={e => setType(e.target.value)}
+        />
+
+        <InputBox
+          input="Local"
+          value={place}
+          onChange={e => setPlace(e.target.value)}
+        />
+
         <Submit>CADASTRAR</Submit>
       </LoginBox>
       <Footer>
@@ -73,7 +78,7 @@ const RegistrarFuncionario: React.FC = () => {
   )
 }
 
-export default RegistrarFuncionario
+export default EditarCompromisso
 
 const Container = styled.div`
   background-image: url(${background});
