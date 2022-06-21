@@ -4,7 +4,7 @@ import NavBar from "../../components/NavBar";
 import LeftChartFinancas from "./LeftChartFinancas";
 import RightChartFinancas from "./RightChartFinancas";
 import "./Financas.css"
-import BarChart from "./BarChart ";
+//import BarChart from "./BarChart ";
 
 function Financas () {
 
@@ -28,7 +28,7 @@ function Financas () {
                 </div>
                 <hr/>
                 <div className="esquerdaFinancas">
-                    <BarChart />
+                    
                 </div>
                 <div className="direitaFinancas">
                     <RightChartFinancas />

@@ -2,14 +2,25 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useEffect, useState } from 'react';
 import { Button, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import supabase from '../../services/api';
+//import supabase from '../../services/api';
+
+import { getEmployee } from '../../services/api'
 
 function TableComissao() {
 
-    const navigate = useNavigate();
-    const [comissao, setComissao] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate()
+    const [employees, setEmployees] = useState([])
+    const [loading, setLoading] = useState(false)
+  
+    useEffect(() => {
+      ;(async () => {
+        const response = await getEmployee()
+        setEmployees(response.data)
+        setLoading(false)
+      })()
+    }, [])
 
+    /*
     useEffect(() => {
         fetchComissao()
     }, []);
@@ -22,7 +33,7 @@ function TableComissao() {
         setComissao(data)
         setIsLoading(false)
         console.log("data: ", data)
-    }
+    }*/
 
     function handleRegistrarComissao(e){
         navigate('/registro-funcionario');
@@ -31,6 +42,7 @@ function TableComissao() {
         navigate(`/editar-funcionario/${nome}`);
     }
 
+    /*
     async function deleteComissao(id) {
         if (window.confirm("Tem certeza de que deseja excluir este funcionário?")) {
             try {
@@ -44,7 +56,7 @@ function TableComissao() {
                 console.error(error)
             }
         }
-    }
+    }*/
 
     return (
         <div >
@@ -60,25 +72,39 @@ function TableComissao() {
                     </tr>
                 </thead>
                 <tbody>
-                {isLoading ? 
-                    <Spinner animation="border" role="status">
+                    {loading ? (
+                        <Spinner animation="border" role="status">
                         <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                    : comissao.map(funcionario => (
-                                <tr key={funcionario.id}>
-                                    <td>{funcionario.nome}</td>
-                                    <td>{funcionario.funcao}</td>
-                                    <td>{funcionario.data_nascimento}</td>
-                                    <td>{funcionario.departamento}</td>
-                                    <td>{funcionario.salario}</td>
-                                    <td className="text-center">
-                                        <Button variant="warning" onClick={()=>handleEditarComissao(funcionario.nome)}><i className="bi bi-pencil-square"></i></Button>
-                                        &nbsp;&nbsp;
-                                        <Button variant="danger" onClick={() => deleteComissao(funcionario.id)}><i className="bi bi-trash-fill"></i></Button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
+                        </Spinner>
+                    ) : (
+                        employees
+                        .sort((a, b) => a.nome > b.nome ? 1 : -1)
+                        .map(employee => (
+                            <tr key={employee.id}>
+                            <td className="text-center">{employee.nome}</td>
+                            <td>{employee.funcao}</td>
+                            <td>{new Date(employee.data_nascimento).toLocaleDateString()}</td>
+                            <td>{employee.departamento}</td>
+                            <td>{employee.salario}</td>
+                            <td className="text-center">
+                                <Button
+                                variant="warning"
+                                onClick={() => {
+                                    handleEditarComissao(employee.nome)
+                                }}
+                                >
+                                <i className="bi bi-pencil-square"></i>
+                                </Button>
+                                &nbsp;&nbsp;
+                                <Button
+                                variant="danger" /*onClick={() => deleteJogador(jogador.id)}*/
+                                >
+                                <i className="bi bi-trash-fill"></i>
+                                </Button>
+                            </td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </Table>
         </div>

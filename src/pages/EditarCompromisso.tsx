@@ -19,8 +19,10 @@ const EditarCompromisso: React.FC = () => {
       {
         data: new Date(date),
         horario: new Date(time),
+        anfitriao: host,
+        visitante: visitor,
         local: place,
-        torneio: type,
+        torneio: tournament,
       },
       uuid!,
     )
@@ -31,8 +33,10 @@ const EditarCompromisso: React.FC = () => {
 
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
-  const [type, setType] = useState('')
+  const [host, setHost] = useState('')
+  const [visitor, setVisitor] = useState('')
   const [place, setPlace] = useState('')
+  const [tournament, setTournament] = useState('')
 
   return (
     <Container>
@@ -56,15 +60,27 @@ const EditarCompromisso: React.FC = () => {
         />
 
         <InputBox
-          input="Tipo"
-          value={type}
-          onChange={e => setType(e.target.value)}
+          input="Anfitrião"
+          value={host}
+          onChange={e => setHost(e.target.value)}
+        />
+
+        <InputBox
+          input="Visitante"
+          value={visitor}
+          onChange={e => setVisitor(e.target.value)}
         />
 
         <InputBox
           input="Local"
           value={place}
           onChange={e => setPlace(e.target.value)}
+        />
+
+        <InputBox
+          input="Torneio"
+          value={tournament}
+          onChange={e => setTournament(e.target.value)}
         />
 
         <Submit>CADASTRAR</Submit>

@@ -10,7 +10,7 @@ import { createEmployee } from '../services/api'
 const RegistrarFuncionario: React.FC = () => {
   const [name, setName] = useState('')
   const [post, setPost] = useState('')
-  const [gender, setGender] = useState('')
+  const [department, setDepartment] = useState('')
   const [income, setIncome] = useState('')
   const [birthday, setBirthday] = useState('')
 
@@ -22,6 +22,7 @@ const RegistrarFuncionario: React.FC = () => {
     const { data } = await createEmployee({
       nome: name,
       funcao: post,
+      departamento: department,
       data_nascimento: new Date(birthday),
       salario: parseInt(income),
     })
@@ -47,9 +48,9 @@ const RegistrarFuncionario: React.FC = () => {
           onChange={e => setPost(e.target.value)}
         />
         <InputBox
-          input="Gênero"
-          value={gender}
-          onChange={e => setGender(e.target.value)}
+          input="Departamento"
+          value={department}
+          onChange={e => setDepartment(e.target.value)}
         />
         <InputBox
           input="Salário"

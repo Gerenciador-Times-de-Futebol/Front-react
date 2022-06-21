@@ -86,7 +86,7 @@ function TableJogadores() {
             </Spinner>
           ) : (
             players
-              .sort((a, b) => a.nome - a.nome)
+              .sort((a, b) => a.nome > b.nome ? 1 : -1)
               .map(player => (
                 <tr key={player.id}>
                   <td className="text-center">{player.camisa}</td>

@@ -13,6 +13,7 @@ const RegistrarAtletas: React.FC = () => {
   const [contract, setContract] = useState('')
   const [income, setIncome] = useState('')
   const [age, setAge] = useState('')
+  const [bond, setBond] = useState('')
   const [shirt, setShirt] = useState('')
 
   const navigate = useNavigate()
@@ -26,6 +27,7 @@ const RegistrarAtletas: React.FC = () => {
       termino_contrato: new Date(contract),
       salario: parseInt(income),
       idade: parseInt(age),
+      vinculo: bond,
       camisa: parseInt(shirt),
     }
 
@@ -79,6 +81,11 @@ const RegistrarAtletas: React.FC = () => {
           type="number"
           value={age}
           onChange={e => setAge(e.target.value)}
+        />
+        <InputBox
+          input="Vínculo"
+          value={bond}
+          onChange={e => setBond(e.target.value)}
         />
         <InputBox
           input="Camisa"

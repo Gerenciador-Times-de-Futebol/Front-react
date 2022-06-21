@@ -11,7 +11,8 @@ function ConfigUser() {
                     <div>
                         <h1 className="titulo">Configurações Usuário </h1>  
                     </div>
-                <hr/> 
+                <hr/>
+                <br/><br/>
                 <img src={ImageUser} className="imagem" alt="ImageUser" />
                 <UserChange />
                 </div>

@@ -13,6 +13,7 @@ const EditarAtletas: React.FC = () => {
   const [contract, setContract] = useState('')
   const [income, setIncome] = useState('')
   const [age, setAge] = useState('')
+  const [bond, setBond] = useState('')
   const [shirt, setShirt] = useState('')
 
   const { nome } = useParams()
@@ -28,6 +29,7 @@ const EditarAtletas: React.FC = () => {
       termino_contrato: new Date(contract),
       salario: parseInt(income),
       idade: parseInt(age),
+      vinculo: bond,
       camisa: parseInt(shirt),
     }
 
@@ -81,6 +83,11 @@ const EditarAtletas: React.FC = () => {
           type="number"
           value={age}
           onChange={e => setAge(e.target.value)}
+        />
+        <InputBox
+          input="Vínculo"
+          value={bond}
+          onChange={e => setBond(e.target.value)}
         />
         <InputBox
           input="Camisa"

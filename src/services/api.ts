@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Compromisso, Financa, Funcionario, Player } from '../util/types'
 
 export const api = axios.create({
-  baseURL: "http://165.227.103.201:8100"
+  baseURL: 'http://165.227.103.201:8100'
 })
 
 export const createSession = async (email: string, senha: string) => {
